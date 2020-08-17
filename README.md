@@ -20,7 +20,7 @@ Please refer to [README](https://github.com/org-crac/docs#users-flow) for detail
 ### Preparing the image
 1. Run the [JDK](README.md#JDK) in the checkpoint mode
 ```
-$JAVA_HOME/bin/java -Zcheckpoint:cr -jar build/libs/example-0.1-all.jar
+$JAVA_HOME/bin/java -XX:CRaCCheckpointTo=cr -jar build/libs/example-0.1-all.jar
 ```
 2. Warm-up the instance
 ```
@@ -34,5 +34,5 @@ jcmd build/libs/example-0.1-all.jar JDK.checkpoint
 ### Restoring
 
 ```
-$JAVA_HOME/bin/java -Zrestore:cr
+$JAVA_HOME/bin/java -XX:CRaCRestoreFrom=cr
 ```
