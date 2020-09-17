@@ -15,7 +15,7 @@ gradle assemble
 
 ## Running
 
-Please refer to [README](https://github.com/org-crac/docs#users-flow) for details.
+Please refer to [README](https://github.com/CRaC/docs#users-flow) for details.
 
 ### Preparing the image
 1. Run the [JDK](README.md#JDK) in the checkpoint mode

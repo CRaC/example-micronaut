@@ -9,14 +9,14 @@ group "example"
 
 repositories {
     maven {
-        url "https://maven.pkg.github.com/org-crac/micronaut-core"
+        url "https://maven.pkg.github.com/crac/micronaut-core"
         credentials {
             username = System.getenv("GITHUB_ACTOR")
             password = System.getenv("GITHUB_TOKEN")
         }
     }
     maven {
-        url "https://maven.pkg.github.com/org-crac/org.crac"
+        url "https://maven.pkg.github.com/crac/org.crac"
         credentials {
             username = System.getenv("GITHUB_ACTOR")
             password = System.getenv("GITHUB_TOKEN")
