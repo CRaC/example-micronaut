@@ -8,23 +8,8 @@ version "0.1"
 group "example"
 
 repositories {
-    maven {
-        url "https://maven.pkg.github.com/crac/micronaut-core"
-        credentials {
-            username = System.getenv("GITHUB_ACTOR")
-            password = System.getenv("GITHUB_TOKEN")
-        }
-    }
-    maven {
-        url "https://maven.pkg.github.com/crac/org.crac"
-        credentials {
-            username = System.getenv("GITHUB_ACTOR")
-            password = System.getenv("GITHUB_TOKEN")
-        }
-    }
     mavenCentral()
     maven { url "https://jcenter.bintray.com" }
-
 }
 
 configurations {
@@ -42,7 +27,7 @@ dependencies {
     implementation "io.swagger.core.v3:swagger-annotations"
     implementation "io.micronaut:micronaut-validation"
     implementation "io.micronaut:micronaut-runtime"
-    implementation "io.micronaut:micronaut-http-server-netty"
+    implementation "io.github.crac.io.micronaut:micronaut-http-server-netty:$micronautVersion"
     implementation "io.micronaut:micronaut-http-client"
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")

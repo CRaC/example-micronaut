@@ -2,13 +2,6 @@
 
 ## Building
 
-1. Create once a [Personal Access Token (PAK)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with [packages scope](https://docs.github.com/en/packages/publishing-and-managing-packages/about-github-packages#about-tokens).
-2. Provide the PAK in the environment
-```
-export GITHUB_ACTOR=YOUR_USERNAME
-export GITHUB_TOKEN=YOUR_PAK
-```
-3. Use gradle to build
 ```
 gradle assemble
 ```
