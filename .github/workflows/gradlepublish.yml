@@ -3,6 +3,7 @@ name: Gradle Package
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,21 +18,22 @@ jobs:
         apt-get -y --no-install-recommends install
           siege
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Checkout utils
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: CRaC/utils
         path: utils
 
     - run: make -C utils
 
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
-    - uses: actions/cache@v2
+        java-version: 17
+        distribution: zulu
+    - uses: actions/cache@v3
       with:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
@@ -44,11 +46,12 @@ jobs:
 
     - name: Test on Vanila JDK
       run: |
+        set -x
         P=$(utils/start-bg.sh \
           -s "Startup completed" \
-          java -jar build/libs/example-0.1-all.jar)
+          java -jar build/libs/demo-0.1-all.jar)
         curl localhost:8080/hello/test | grep "Hello test!"
-        utils/bench.sh http://localhost:8080/hello/test
+        bash -x utils/bench.sh http://localhost:8080/hello/test
         kill $P
 
     - name: Download JDK
@@ -68,7 +71,7 @@ jobs:
           -XX:+UnlockDiagnosticVMOptions \
           -XX:+CRTraceStartupTime \
           -Djdk.crac.trace-startup-time=true \
-          -jar build/libs/example-0.1-all.jar)
+          -jar build/libs/demo-0.1-all.jar)
 
         # warmup the service
         utils/bench.sh http://localhost:8080/hello/test
